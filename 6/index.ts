@@ -1,29 +1,11 @@
 /*
+Fix typing for the filterPersons so that it can filter users and return User[] when personType='user' and return Admin[] when personType='admin'. Also filterPersons should accept partial User/Admin type according to the personType. `criteria` argument should behave according to the `personType` argument value. `type` field is not allowed in the `criteria` field.
 
-Intro:
-
-    Filtering requirements have grown. We need to be
-    able to filter any kind of Persons.
-
-Exercise:
-
-    Fix typing for the filterPersons so that it can filter users
-    and return User[] when personType='user' and return Admin[]
-    when personType='admin'. Also filterPersons should accept
-    partial User/Admin type according to the personType.
-    `criteria` argument should behave according to the
-    `personType` argument value. `type` field is not allowed in
-    the `criteria` field.
-
-Higher difficulty bonus exercise:
-
-    Implement a function `getObjectKeys()` which returns more
-    convenient result for any argument given, so that you don't
-    need to cast it.
-
-    let criteriaKeys = Object.keys(criteria) as (keyof User)[];
-    -->
-    let criteriaKeys = getObjectKeys(criteria);
+Bonus:
+Implement a function `getObjectKeys()` which returns more convenient result for any argument given, so that you don't need to cast it.
+let criteriaKeys = Object.keys(criteria) as (keyof User)[];
+-->
+let criteriaKeys = getObjectKeys(criteria);
 
 */
 
@@ -67,6 +49,8 @@ export function logPerson(person: Person) {
     }`,
   );
 }
+
+// = = =
 type UserCriteria = Partial<Omit<User, "type">>;
 type AdminCriteria = Partial<Omit<Admin, "type">>;
 
@@ -87,20 +71,26 @@ export function filterPersons(
 ): Admin[] | User[] {
   if (personType === "user") {
     return persons.filter(isUser).filter((user) => {
-      const criteriaKeys = Object.keys(criteria) as (keyof User)[];
+      const criteriaKeys = getObjectKeys<User>(criteria);
       return criteriaKeys.every((fieldName) => {
         return user[fieldName] === criteria[fieldName];
       });
     });
   } else {
     return persons.filter(isAdmin).filter((user) => {
-      const criteriaKeys = Object.keys(criteria) as (keyof Admin)[];
+      const criteriaKeys = getObjectKeys<Admin>(criteria);
       return criteriaKeys.every((fieldName) => {
         return user[fieldName] === criteria[fieldName];
       });
     });
   }
 }
+
+function getObjectKeys<T>(obj: UserCriteria | AdminCriteria): (keyof T)[] {
+  return Object.keys(obj) as (keyof T)[];
+}
+// = = =
+
 export const usersOfAge23 = filterPersons(persons, "user", { age: 23 });
 export const adminsOfAge23 = filterPersons(persons, "admin", { age: 23 });
 
@@ -112,5 +102,3 @@ console.log();
 console.log("Admins of age 23:");
 adminsOfAge23.forEach(logPerson);
 
-// In case you are stuck:
-// https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads

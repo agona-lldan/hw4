@@ -1,5 +1,7 @@
 /*
 Without duplicating type structures, modify filterUsers function definition so that we can pass only those criteria which are needed, and not the whole User information as it is required now according to typing.
+
+Bonus:
 Exclude "type" from filter criteria.
 */
 
