@@ -1,30 +1,7 @@
 /*
-
-Intro:
-
-    Filtering was completely removed from the project.
-    It turned out that this feature was just not needed
-    for the end-user and we spent a lot of time just because
-    our office manager told us to do so. Next time we should
-    instead listen to the product management.
-
-    Anyway we have a new plan. CEO's friend Nick told us
-    that if we randomly swap user names from time to time
-    in the community, it would be very funny and the project
-    would definitely succeed!
-
-Exercise:
-
-    Implement swap which receives 2 persons and returns them in
-    the reverse order. The function itself is already
-    there, actually. We just need to provide it with proper types.
-    Also this function shouldn't necessarily be limited to just
-    Person types, lets type it so that it works with any two types
-    specified.
-
+Implement swap which receives 2 persons and returns them in the reverse order. The function itself is already there, actually. We just need to provide it with proper types. Also this function shouldn't necessarily be limited to just Person types, lets type it so that it works with any two types specified.
 */
 
-import { IsTypeEqual, typeAssert } from "type-assertions";
 
 interface User {
   type: "user";
@@ -80,9 +57,11 @@ const users: User[] = [
   },
 ];
 
+// = = =
 export function swap<T, V>(v1: T, v2: V): [V, T] {
   return [v2, v1];
 }
+// = = =
 
 function test1() {
   console.log("test1:");
