@@ -1,4 +1,6 @@
-# лень было засыпать
+# но я остаюсь тем, что это был великий сарказм
+
+![tinkoff](https://cdn.forbes.ru/forbes-static/new/2022/05/7-627bab7a33d74.jpg)
 
 1 задание ✅
 
@@ -45,9 +47,3 @@
 my honest reaction to assignments 14 and 15
 
 ![miles morales](https://i.ibb.co/Fn81kRh/fb45854003af82a90bca92eead5ec641.jpg)
-
-ну либо вот так:
-
-> но я остаюсь тем, что это был великий сарказм
-
-![tinkoff](https://cdn.forbes.ru/forbes-static/new/2022/05/7-627bab7a33d74.jpg)
